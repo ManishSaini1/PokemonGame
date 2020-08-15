@@ -2,10 +2,13 @@ body {
   margin: 0;
   background-color: black;
   position: relative;
+  /* background-image: url("https://sm.ign.com/ign_ap/screenshot/default/74566473-1988645374615344-7987991914693525504-n_2dmb.jpg"); */
+  /* background-size: unset; */
 }
 #pokemon img {
   height: 100px;
   width: 100px;
+ 
   /* border: 2px solid white; */
 }
 #pokemon
@@ -22,8 +25,9 @@ body {
 {
     display: inline-block;
     position: absolute;
-    transition: all 0.3s ease-in-out;
-    
+    transition: opacity 2s ease-in-out;
+    transition: visiblity 0.5s ease-in-out;
+    visibility: hidden;
     z-index: 4;
 }
 .ball1 img{

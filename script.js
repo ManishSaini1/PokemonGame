@@ -1,116 +1,128 @@
-var marginLeft=10;
-var marginTop=10;
-let ball= document.getElementById("ball");
-var pokemon=document.getElementById("pokemon"); 
-// console.log(window.innerWidth);
-// console.log(window.innerHeight);
+var marginLeft = 10;
+var marginTop = 10;
+let ball = document.getElementById("ball");
+var pokemon = document.getElementById("pokemon");
 
+let ballList = document.getElementsByClassName("ball1");
 
-    // var position =$(ball[i]).position();
-// console.log("Ball position", position);
- 
-    setTimeout(() => {
-        ball.style.marginTop= Math.random(0-10)*650 + "px";
-        ball.style.marginLeft =Math.random(0-10)*1300 + "px";
-    }, 1000);
-        
+for (let i = 0; i < ballList.length; i++) {
+  if (i == 0) {
+    ballList[i].style.marginTop = Math.random(0 - 1000) + "px";
+    ballList[i].style.marginLeft = Math.random(0 - 1000)  + "px";
+    continue;
+  }
 
+  console.log("i===j");
+  for (let j =1; j < i; j++) {
+    // console.log("VALUE Of i is   ", j);
+
+    let isOverlap = ballOverlapDetection(ballList[i], ballList[j]);
+
+    while (isOverlap) {
+      console.log("*****************before",isOverlap);
+      // console.log("Inside the while and value of j is   ", j);
+      ballList[i].style.marginTop = Math.random(0 - 1000)*658 + "px";
+      ballList[i].style.marginLeft = Math.random(0 - 1000)*1250  + "px";
+      isOverlap = ballOverlapDetection(ballList[i], ballList[j]);
+      console.log("***************** after",isOverlap);
+    }
+  }
+}
+
+function hideball(ballToHide) {
+  ballToHide.style.visibility = "hidden";
+  ballToHide.style.opacity = "0";
+}
+function moveBallRandom(ballToMove) {
+  ballToMove.style.marginTop = Math.random() * 650 + "px";
+  ballToMove.style.marginLeft = Math.random() * 1200 + "px";
+  setTimeout(() => {
+    ballToMove.style.visibility = "visible";
+    ballToMove.style.opacity = "1";
+  }, 200);
+}
+// moveBallRandom();
 
 // var pokemonPosition=$(pokemon).position();
 // console.log("pokemon Positio", pokemonPosition);
 
-function movePokemon(event)
-{
-    const pokemonBottom=pokemon.getBoundingClientRect().bottom;
-    const pokemonHeight=pokemon.getBoundingClientRect().height;
-    const pokemonTop=pokemon.getBoundingClientRect().top;
-    const pokemonWidth=pokemon.getBoundingClientRect().width;
-    const pokemonLeft=pokemon.getBoundingClientRect().left;
-    const ballBottom=ball.getBoundingClientRect().bottom;
-    const ballLeft=ball.getBoundingClientRect().left;
-    const ballHeight=ball.getBoundingClientRect().height;
-    const ballWidth=ball.getBoundingClientRect().width;
-    const ballRight=ball.getBoundingClientRect().right;
-    const ballTop=ball.getBoundingClientRect().top;
-    if(pokemonLeft + pokemonWidth>=
-    (Math.floor(ballLeft)))
+function movePokemon(event) {
+  const pokemonBottom = pokemon.getBoundingClientRect().bottom;
+  const pokemonHeight = pokemon.getBoundingClientRect().height;
+  const pokemonTop = pokemon.getBoundingClientRect().top;
+  const pokemonWidth = pokemon.getBoundingClientRect().width;
+  const pokemonLeft = pokemon.getBoundingClientRect().left;
+  for(let i=0 ;  i  < ballList.length; i++)
+  {
+    const ballBottom =  ballList[i].getBoundingClientRect().bottom;
+    const ballLeft =  ballList[i].getBoundingClientRect().left;
+    const ballHeight =  ballList[i].getBoundingClientRect().height;
+    const ballWidth =  ballList[i].getBoundingClientRect().width;
+    const ballRight =  ballList[i].getBoundingClientRect().right;
+    const ballTop =  ballList[i].getBoundingClientRect().top;
+  if (pokemonLeft + pokemonWidth >= Math.floor(ballLeft)) {
+    
     // &&
-    // ((pokemon.getBoundingClientRect().bottom + pokemon.getClientRects().height)>=(ball.getBoundingClientRect().bottom + ball.getClientRects().height))) 
-{
-    if((pokemonBottom + pokemonHeight)>=(ballBottom + ballHeight))
-    {
-                // window.alert("caught");
-                    if(pokemonLeft  <= ballRight )
-                    {
-                        if((pokemonTop) <=( ballTop  + ballHeight))
-                console.log("true in vertical also************");
-                      }
+    // ((pokemon.getBoundingClientRect().bottom + pokemon.getClientRects().height)>=(ball.getBoundingClientRect().bottom + ball.getClientRects().height)))
+    if (pokemonBottom + pokemonHeight >= ballBottom + ballHeight) {
+      // window.alert("caught");
+      if (pokemonLeft <= ballRight) {
+        if (pokemonTop <= ballTop + ballHeight) {
+          //   console.log("true in vertical also************");
+          //   console.log("pokemmonTop", pokemonTop);
+          //   console.log("balltop", ballTop);
+          //   console.log("ballHeight", ballHeight);
+          hideball(ballList[i]);
+          moveBallRandom(ballList[i]);
+        }
+      }
+    }
+  }
 }
-    
-}
-     
 
-    var x=event.keyCode;
-    
+  var x = event.keyCode;
 
-    if(x==39 && marginLeft  < 1450)
-    {
-      var value=  pokemon.offsetLeft
+  if (x == 39 && marginLeft < 1450) {
+    var value = pokemon.offsetLeft;
     //   console.log(value);
-    var pokemonPosition=(pokemon).offsetLeft;
- 
+    var pokemonPosition = pokemon.offsetLeft;
 
-   
-        pokemon.style.marginLeft= marginLeft + "px";
-        marginLeft+=10;     
-    }
-    else if(x==37 && marginLeft >0)
-    {
-        marginLeft-=10;
-        
-        pokemon.style.marginLeft= marginLeft + "px";
-       
-    }
-    else if(x==38 && marginTop  >0)
-    {
-        marginTop-=10;
-        pokemon.style.marginTop=marginTop +"px";
-           
-    }
-        else if(x==40 &&  (pokemon.offsetTop+ pokemon.offsetHeight +19)< window.innerHeight)
-    {
-        console.log("offTop",pokemon.offsetTop);
-        console.log("offheight",pokemon.offsetHeight);
-        console.log("ineerHeigfht",window.innerHeight)
-        pokemon.style.marginTop=marginTop +"px";
-            marginTop+=10;
-       
-    }
-    
+    pokemon.style.marginLeft = marginLeft + "px";
+    marginLeft += 10;
+  } else if (x == 37 && marginLeft > 0) {
+    marginLeft -= 10;
+
+    pokemon.style.marginLeft = marginLeft + "px";
+  } else if (x == 38 && marginTop > 0) {
+    marginTop -= 10;
+    pokemon.style.marginTop = marginTop + "px";
+  } else if (
+    x == 40 &&
+    pokemon.offsetTop + pokemon.offsetHeight + 19 < window.innerHeight
+  ) {
+    console.log("offTop", pokemon.offsetTop);
+    console.log("offheight", pokemon.offsetHeight);
+    console.log("ineerHeigfht", window.innerHeight);
+    pokemon.style.marginTop = marginTop + "px";
+    marginTop += 10;
+  }
 }
 
-// // collision detection
-// function hitTest(a, b){
-//     var aPos =$(a).position();
-//     var bPos = $(b).position();
+function ballOverlapDetection(ball1, ball2) {
+  console.log(ball1);
+  console.log(ball1.getBoundingClientRect());
+  console.log(ball2.getBoundingClientRect());
+  let ball1Y = ball1.getBoundingClientRect().y;
+  let ball2Y = ball2.getBoundingClientRect().y;
+  let ball1X = ball1.getBoundingClientRect().x;
+  let ball2X = ball2.getBoundingClientRect().x;
+  console.log("here", ball1Y);
+  console.log(Math.abs(ball1Y - ball2Y));
+  console.log(Math.abs(ball1X - ball2X));
 
-//     var aLeft = aPos.left;
-//     var aRight = aPos.left + a.width;
-//     var aTop = aPos.top;
-//     var aBottom = aPos.top + a.height;
-
-//     var bLeft = bPos.left;
-//     var bRight = bPos.left + b.width;
-//     var bTop = bPos.top;
-//     var bBottom = bPos.top + b.height;
-
-//     // http://tekpool.wordpress.com/2006/10/11/rectangle-intersection-determine-if-two-given-rectangles-intersect-each-other-or-not/
-//     return !( bLeft > aRight
-//         || bRight < aLeft
-//         || bTop > aBottom
-//         || bBottom < aTop
-//         );
-// }
-
-// var collision=hitTest(pokemon, ball);
-// console.log("collison is" ,collision);
+  if (Math.abs(ball1Y - ball2Y) <= 500 && Math.abs(ball1X - ball2X) <= 500) {
+    //  console.log("true");
+    return true;
+  }
+  return false;
+}
