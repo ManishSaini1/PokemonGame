@@ -1,0 +1,39 @@
+body {
+  margin: 0;
+  background-color: black;
+  position: relative;
+}
+#pokemon img {
+  height: 100px;
+  width: 100px;
+  /* border: 2px solid white; */
+}
+#pokemon
+{
+    position: absolute;
+}
+#ball
+{
+    display: inline-block;
+    position: absolute;
+    z-index: 4;
+}
+.ball1 
+{
+    display: inline-block;
+    position: absolute;
+    transition: all 0.3s ease-in-out;
+    
+    z-index: 4;
+}
+.ball1 img{
+    height: 50px;
+    width: 50px;
+}
+#ball img {
+  height: 50px;
+  width: 50px;
+  /* border: 2px solid pink; */
+  display: inline-block ;
+
+}
