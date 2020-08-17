@@ -10,11 +10,11 @@
   crossorigin="anonymous"></script>
     <title>Document</title>
   </head>
-  <body onkeydown="movePokemon(event)" onload="moveBallRandom()">
+  <body onkeydown="movePokemon(event)" >
     <div id="pokemon"><img src="./assets/images/pokemon.png"></div>
     <!-- <div ><img src="./assets/images/pokeball.png" /></div> -->
     <!-- <div id="ball" class="ball1"><img src="./assets/images/pokeball.png" /></div> -->
-    <div  id="ball" class="ball1"><img src="./assets/images/pokeball.png" /></div>
+    <!-- <div  id="ball" class="ball1"><img src="./assets/images/pokeball.png" /></div> -->
      <!-- <div  class="ball1"><img src="./assets/images/pokeball.png" /></div>
     <div  class="ball1"><img src="./assets/images/pokeball.png" /></div>
     <div  class="ball1"><img src="./assets/images/pokeball.png" /></div>
@@ -40,6 +40,13 @@
     <div  class="ball1"><img src="./assets/images/pokeball.png" /></div> 
     <div  class="ball1"><img src="./assets/images/pokeball.png" /></div>
     <div  class="ball1"><img src="./assets/images/pokeball.png" /></div>
+    <div id="score-counter"><span class="white score-font" >Score : </span>
+      <span class="white score-font" id="score">0</span>
+      <br>
+      <br>
+      <span class="white time-font">Time Left :</span>
+      <span class="white time-font" id="timer"></span>
+    </div>
    
     <script src="./script.js"></script>
   </body>

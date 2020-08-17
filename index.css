@@ -27,7 +27,7 @@ body {
     position: absolute;
     transition: opacity 2s ease-in-out;
     transition: visiblity 0.5s ease-in-out;
-    visibility: hidden;
+    /* visibility: hidden; */
     z-index: 4;
 }
 .ball1 img{
@@ -40,4 +40,25 @@ body {
   /* border: 2px solid pink; */
   display: inline-block ;
 
+}
+#score-counter
+{
+  /* border: 2px solid red; */
+  height: 10vh;
+  width: 10vw;
+  margin-top :85vh;
+  margin-left: 90vw;
+  position: absolute;
+}
+.white
+{
+  color: white;
+}
+.time-font
+{
+  font-size: 1.2rem;
+}
+.score-font
+{
+  font-size: 1.5rem;
 }

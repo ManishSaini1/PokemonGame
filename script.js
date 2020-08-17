@@ -4,6 +4,8 @@ let ball = document.getElementById("ball");
 var pokemon = document.getElementById("pokemon");
 
 let ballList = document.getElementsByClassName("ball1");
+let score = document.getElementById("score");
+let currentScore = 0;
 
 for (let i = 0; i < ballList.length; i++) {
   if (i == 0) {
@@ -74,6 +76,8 @@ function movePokemon(event) {
           //   console.log("ballHeight", ballHeight);
           hideball(ballList[i]);
           moveBallRandom(ballList[i]);
+          score.innerText = currentScore + 1;
+          currentScore++;
         }
       }
     }
@@ -126,3 +130,42 @@ function ballOverlapDetection(ball1, ball2) {
   }
   return false;
 }
+
+// window.alert("Press Enter to Start Game");
+//Timer
+function startTimer(duration, display) {
+  var timer = duration,
+    minutes,
+    seconds;
+  setInterval(function () {
+    minutes = parseInt(timer / 60, 10);
+    seconds = parseInt(timer % 60, 10);
+
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+    display.textContent = minutes + ":" + seconds;
+
+    if (--timer < 0) {
+      window.alert("Game Over Press Enter to Start");
+      currentScore=0;
+      score.innerText = currentScore;
+      timer = duration;
+    }
+  }, 1000);
+}
+
+window.onload = function () {
+  var fiveMinutes = 60 * 2,
+    display = document.querySelector("#timer");
+  display.textContent = "2:00";
+  startTimer(fiveMinutes, display);
+};
+
+ function getDistance(x1, y1 ,x2,y2)
+ {
+   var xDistance= x2-x1;
+   var yDistance=y2-y1;
+   var tPower=Math.pow(xDistance, 2) + Math.pow(yDistance, 2);
+   return Math.sqrt(tPower);
+ }
